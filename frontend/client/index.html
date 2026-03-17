@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/frontend/css/style.css">
+    <title>CareerChat</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Career<span>Chat</span></h1>
+
+        <p class="subtitle">Анонимные разговоры между людьми разных профессий</p>
+
+        <div id="setup-screen">
+            <h2>Найти собеседника</h2>
+
+            <div class="form-group">
+                <label for="my-profession">Ваша профессия</label>
+                <input type="text" id="my-profession" placeholder="Начните вводить...">
+                <div class="input-error" id="profession-error">Укажите вашу профессию</div>
+                <div id="my-profession-suggestions" class="suggestions"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="my-level">Ваш уровень</label>
+                <select id="my-level">
+                    <option value="">Не указан</option>
+                    <option value="Student">Student</option>
+                    <option value="Junior">Junior</option>
+                    <option value="Middle">Middle</option>
+                    <option value="Senior">Senior</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="wanted-profession">Хочу поговорить с</label>
+                <input type="text" id="wanted-profession" placeholder="Начните вводить...">
+                <div class="input-error" id="wanted-profession-error">Укажите профессию собеседника</div>
+                <div id="wanted-profession-suggestions" class="suggestions"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="wanted-level">Уровень (необязательно)</label>
+                <select id="wanted-level">
+                    <option value="">Любой</option>
+                    <option value="Student">Student</option>
+                    <option value="Junior">Junior</option>
+                    <option value="Middle">Middle</option>
+                    <option value="Senior">Senior</option>
+                </select>
+            </div>
+
+            <button id="find-btn">Найти собеседника</button>
+            <p class="privacy-note">Анонимный чат. Сообщения не сохраняются.</p>
+        </div>
+
+        <div id="search-screen" style="display:none">
+            <h2 class="search-title">Ищем собеседника<span class="dots"></span></h2>
+            <p  class="search-subtitle">Пожалуйста подождите</p>
+            <button id="cancel-search">Отменить поиск</button>
+        </div>
+
+        <div id="chat-screen" style="display:none">
+            <div id="chat-info">
+                <p>Вы подключены к собеседнику</p>
+            </div>
+            <div id="messages"></div>
+            <div class="chat-input">
+                <input type="text" id="message-input" placeholder="Введите сообщение...">
+                <button id="send-btn">Отправить</button>
+            </div>
+            <div class="chat-actions">
+                <button id="next-chat">Следующий собеседник</button>
+                <button id="leave-chat" class="danger">Завершить разговор</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.socket.io/4.8.3/socket.io.min.js"></script>
+    <script type="module" src="/frontend/js/app.js"></script>
+</body>
+
+</html>
