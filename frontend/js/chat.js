@@ -54,27 +54,6 @@ export function initChat() {
 
     });
 
-    nextBtn.addEventListener("click", () => {
-
-        socket.emit("leave_chat");
-
-        clearChat();
-
-        input.disabled = false;
-        sendBtn.disabled = false;
-        leaveBtn.disabled = false;
-
-        addSystemMessage("Ищем нового собеседника...");
-
-        socket.emit("join_queue", {
-            profession: elements.myProfessionInput.value,
-            level: document.getElementById("my-level").value,
-            wantedProfession: elements.wantedProfessionInput.value,
-            wantedLevel: document.getElementById("wanted-level").value
-        });
-
-    });
-
     let typingTimeout;
 
     input.addEventListener("input", () => {
@@ -95,9 +74,21 @@ export function initChat() {
 
     nextBtn.addEventListener("click", () => {
 
+        if (nextBtn.disabled) return;
+
+        nextBtn.disabled = true;
+
+        setTimeout(() => {
+            nextBtn.disabled = false;
+        }, 1500);
+
         socket.emit("leave_chat");
 
         clearChat();
+
+        input.disabled = false;
+        sendBtn.disabled = false;
+        leaveBtn.disabled = false;
 
         addSystemMessage("Ищем нового собеседника...");
 
