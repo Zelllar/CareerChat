@@ -44,6 +44,17 @@ function handleSocket(io, socket) {
 
     });
 
+    socket.on("disconnecting", () => {
+
+        const rooms = [...socket.rooms];
+        const room = rooms.find(r => r !== socket.id);
+
+        if (room) {
+            socket.to(room).emit("partner_left");
+        }
+
+    });
+
     socket.on("disconnect", () => {
 
         const index = waitingUsers.findIndex(

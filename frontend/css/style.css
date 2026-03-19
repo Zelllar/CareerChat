@@ -53,7 +53,7 @@ h2 {
 
 .message {
     display: inline-block;
-    max-width: 60%;
+    max-width: 70%;
     font-family: "JetBrains Mono", monospace;
     padding: 12px;
     border-radius: 14px;
@@ -249,7 +249,8 @@ label {
     flex-direction: column;
     gap: 10px;
     height: 320px;
-    width: 420px;
+    max-width: 600;
+    width: 100%;
     background: #2f313b;
     border: 1px solid #3a3d4a;
     border-radius: 8px;
@@ -293,7 +294,32 @@ label {
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin-top: 12px;
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid #3a3d4a;
+}
+
+.chat-actions button {
+    padding: 8px 14px;
+    background: transparent;
+    border: 1px solid #4a4d5a;
+    border-radius: 6px;
+    color: #e5e7eb;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.chat-actions button:hover {
+    background: #3a3d4a;
+}
+
+#next-chat {
+    border-color: #4f8cff;
+    color: #4f8cff;
+}
+
+#next-chat:hover {
+    background: rgba(79, 140, 255, 0.1);
 }
 
 #leave-chat.danger {
@@ -302,23 +328,7 @@ label {
 }
 
 #leave-chat.danger:hover {
-    background: rgba(239, 68, 68, 0.15);
-}
-
-
-#leave-chat,
-#next-chat {
-    padding: 8px 14px;
-    background: transparent;
-    border: 1px solid #4a4d5a;
-    border-radius: 6px;
-    color: #e5e7eb;
-    cursor: pointer;
-}
-
-#leave-chat:hover,
-#next-chat:hover {
-    background: #3a3d4a;
+    background: rgba(239, 68, 68, 0.1);
 }
 
 .chat-partner-title {

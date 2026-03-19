@@ -1,7 +1,11 @@
 import { elements } from "./ui.js";
 import { socket } from "./socket.js";
+import { showSetup } from "./ui.js";
 
 export function initChat() {
+
+    let lastMessageTime = 0;
+
     console.log("Chat initialized");
 
     const input = document.getElementById("message-input");
@@ -11,6 +15,14 @@ export function initChat() {
     function sendMessage() {
 
         if (input.disabled) return;
+
+        const now = Date.now();
+        
+        if (now - lastMessageTime < 500) {
+            return;
+        }
+
+        lastMessageTime = now;
 
         const text = input.value.trim();
 
@@ -100,6 +112,16 @@ export function initChat() {
         });
 
     });
+
+    window.addEventListener("beforeunload", (e) => {
+        const input = document.getElementById("message-input");
+
+        if (!input.disabled) {
+            e.preventDefault();
+            e.returnValue = "";
+        }
+
+    });
 }
 
 export function addMessage(text, type) {
@@ -152,3 +174,11 @@ export function hideTyping() {
 export function clearChat() {
     elements.messages.innerHTML = "";
 }
+
+const backBtn = document.getElementById("back-to-setup");
+
+backBtn.addEventListener("click", () => {
+    socket.emit("leave_chat");
+    clearChat();
+    showSetup();
+});
